@@ -31,7 +31,6 @@ export const constructorSlice = createSlice({
         } else {
           state.burger.ingredients.push(action.payload);
         }
-        localStorage.setItem('burgerConstructor', JSON.stringify(state));
       },
       prepare: (ingredient: TIngredient) => ({
         payload: { ...ingredient, id: nanoid() } as TConstructorIngredient

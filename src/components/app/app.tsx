@@ -17,6 +17,7 @@ import {
   NotFound404
 } from '@pages';
 import { ProtectedRoute } from '../protected-route/protected-route';
+import { fetchIngredients } from '../../services/slices/ingredients';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const App = () => {
   const background = location.state?.background;
 
   useEffect(() => {
+    dispatch(fetchIngredients());
     dispatch(fetchUser());
   }, [dispatch]);
 

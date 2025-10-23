@@ -4,19 +4,24 @@ import { selectUserError } from '../../services/slices/user';
 import { useSelector, useDispatch } from '../../services/store';
 import { loginUser } from '../../services/slices/user';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useForm } from '../../utils/useForm';
+import { ChangeEvent } from 'react';
 
 export const Login: FC = () => {
   const error = useSelector(selectUserError);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { values, handleChange } = useForm({
+    email: '',
+    password: ''
+  });
   const from = location.state?.from?.pathname || '/';
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    dispatch(loginUser({ email, password }))
+    dispatch(loginUser({ email: values.email, password: values.password }))
+      .unwrap()
       .then(() => {
         navigate(from, { replace: true });
       })
@@ -26,10 +31,18 @@ export const Login: FC = () => {
   return (
     <LoginUI
       errorText={error || ''}
-      email={email}
-      setEmail={setEmail}
-      password={password}
-      setPassword={setPassword}
+      email={values.email}
+      setEmail={(value) =>
+        handleChange({
+          target: { name: 'email', value }
+        } as ChangeEvent<HTMLInputElement>)
+      }
+      password={values.password}
+      setPassword={(value) =>
+        handleChange({
+          target: { name: 'password', value }
+        } as ChangeEvent<HTMLInputElement>)
+      }
       handleSubmit={handleSubmit}
     />
   );

@@ -5,10 +5,7 @@ import { RootState } from '../store';
 
 export const fetchIngredients = createAsyncThunk(
   'ingredients/getIngredients',
-  async () => {
-    const res = await getIngredientsApi();
-    return res;
-  }
+  getIngredientsApi
 );
 
 type TIngredientsState = {

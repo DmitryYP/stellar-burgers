@@ -165,7 +165,7 @@ const userSlice = createSlice({
       // logout
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
-        state.isAuthChecked = false;
+        state.isAuthChecked = true;
       })
 
       // updateUser
