@@ -6,7 +6,7 @@ import {
   logoutApi,
   updateUserApi,
   TRegisterData
-} from '@api';
+} from '../../utils/burger-api';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { setCookie, deleteCookie } from '../../utils/cookie';
@@ -18,7 +18,7 @@ interface UserState {
   isAuthChecked: boolean;
 }
 
-const initialState: UserState = {
+export const initialState: UserState = {
   user: null,
   loading: false,
   error: null,

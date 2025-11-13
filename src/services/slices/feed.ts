@@ -9,7 +9,7 @@ import {
   getOrderByNumberApi,
   orderBurgerApi,
   getOrdersApi
-} from '@api';
+} from '../../utils/burger-api';
 import { TOrder } from '@utils-types';
 import { clearConstructor } from './constructor';
 import { RootState } from '../store';
@@ -24,7 +24,7 @@ type TFeedState = {
   orderModalData: TOrder | null;
 };
 
-const initialState: TFeedState = {
+export const initialState: TFeedState = {
   orders: [],
   total: 0,
   totalToday: 0,
